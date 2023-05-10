@@ -14,29 +14,50 @@ def index(request):
 
 def perdidos(request):
     if request.method == 'POST':
-        form = AnimalPerdidoForm(request.POST)
+        form = AnimalPerdidoForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('index')
+            try:
+                animal_perdido = form.save(commit=False)
+                # Verifica se o campo "foto" foi preenchido
+                if 'foto' in request.FILES:
+                    animal_perdido.foto = request.FILES['foto']
+                animal_perdido.save()
+                return redirect('envio_sucesso')
+            except Exception as e:
+                print(form.errors)  # Imprime os erros do formulário para depuração
+                return redirect('form_error')  # Redireciona para a página de erro
         else:
-            context = {'form': form}
-            return render(request, 'perdidos.html', context)
+            print(form.errors)  # Imprime os erros do formulário para depuração
+            return redirect('form_error')  # Redireciona para a página de erro
     else:
         form = AnimalPerdidoForm()
-        context = {'form': form}
-        return render(request, 'perdidos.html', context)
+    context = {'form': form}
+    return render(request, 'perdidos.html', context)
 
 def encontrados(request):
     if request.method == 'POST':
-        form = AnimalEncontradoForm(request.POST)
+        form = AnimalEncontradoForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('index')
+            try:
+                animal_encontrado = form.save(commit=False)
+                # Verifica se o campo "foto" foi preenchido
+                if 'foto' in request.FILES:
+                    animal_encontrado.foto = request.FILES['foto']
+                animal_encontrado.save()
+                return redirect('envio_sucesso')
+            except Exception as e:
+                print(form.errors)  # Imprime os erros do formulário para depuração
+                return redirect('form_error')  # Redireciona para a página de erro
         else:
-            context = {'form': form}
-            return render(request, 'encontrados.html', context)
+            print(form.errors)  # Imprime os erros do formulário para depuração
+            return redirect('form_error')  # Redireciona para a página de erro
     else:
         form = AnimalEncontradoForm()
-        context = {'form': form}
-        return render(request, 'encontrados.html', context)
+    context = {'form': form}
+    return render(request, 'encontrados.html', context)
 
+def envio_sucesso(request):
+    return render(request, 'envio_sucesso.html')
+
+def form_error(request):
+    return render(request, 'form_error.html')

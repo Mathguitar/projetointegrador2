@@ -76,16 +76,14 @@ WSGI_APPLICATION = 'PI_1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'animaisbd',
-        'USER': 'mga',
-        'PASSWORD': '100%Seguro',
-        'OPTIONS': {
-            'autocommit': True,
-        },
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'animais_bd',
+        'USER': 'root',
+        'PASSWORD': '1234567',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -125,5 +123,10 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
+# Configuração de mídia
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
