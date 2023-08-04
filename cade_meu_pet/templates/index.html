@@ -76,10 +76,18 @@
           <a href="{% url 'perdidos' %}">Cadastrar um animal perdido</a>
         </div>
       </div>
+      <div class="buttons-container">
+        <div class="button">
+          <a href="{% url 'lista_encontrados' %}">Lista de animais encontrados</a>
+        </div>
+        <div class="button">
+          <a href="{% url 'lista_perdidos' %}">Lista de animais perdidos</a>
+        </div>
+      </div>
     </div>
     <script>
       // JavaScript
-      const buttonsContainer = document.querySelector('.buttons-container');
+      const buttonsContainer = document.querySelectorAll('.buttons-container');
       const buttons = buttonsContainer.querySelectorAll('.button');
       
       buttons.forEach(button => {
@@ -88,3 +96,4 @@
     </script>
   </body>
 </html>
+
