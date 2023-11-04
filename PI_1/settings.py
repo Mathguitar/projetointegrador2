@@ -58,7 +58,7 @@ ROOT_URLCONF = 'PI_1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates', 'cade_meu_pet')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'animais_bd',
         'USER': 'root',
-        'PASSWORD': '1234567',
+        'PASSWORD': '100%Mysql',
         'HOST': 'localhost',
         'PORT': '3306',
     }
